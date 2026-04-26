@@ -1,0 +1,1168 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>FIVE Studio — Built for Brands That Are Becoming</title>
+<link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+:root{
+  --off-white:#F2EFE8;
+  --black:#0E0E0C;
+  --red:#C8251E;
+  --mid:#888880;
+  --stone:#D0CEC6;
+  --serif:'DM Serif Display',Georgia,serif;
+  --mono:'DM Mono',monospace;
+  --sans:'Helvetica Neue',Helvetica,Arial,sans-serif;
+}
+html{scroll-behavior:smooth}
+body{padding-top:90px; background:var(--off-white);color:var(--black);font-family:var(--sans);font-size:15px;line-height:1.6;overflow-x:hidden}
+
+/* ── NAV ── */
+nav{
+  background:var(--off-white);
+  position:fixed;
+  top:0;
+  left:0;
+  right:0;
+  z-index:200;
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  padding:22px 48px;
+  transition:background 0.3s, border-color 0.3s;
+}
+
+nav.scrolled{
+  background:var(--black);
+  border-bottom:1px solid rgba(14,14,12,0.12);
+}
+
+.nav-logo{
+  display:flex;
+  align-items:center;
+  gap:10px;
+  text-decoration:none;
+}
+
+.nav-links{
+  display:flex;
+  gap:36px;
+  align-items:center;
+}
+
+.nav-links a{
+  font-family:var(--mono);
+  font-size:13px;
+  letter-spacing:0.12em;
+  text-transform:uppercase;
+  color:var(--black);
+  text-decoration:none;
+  padding:8px 14px;
+  border-radius:4px;
+  transition:background 0.2s, color 0.2s;
+}
+
+/* normal hover */
+.nav-links a:hover{
+  color:var(--red);
+  background:transparent;
+}
+
+/* when nav turns black, normal links turn white */
+nav.scrolled .nav-links a{
+  color:var(--off-white);
+}
+
+/* when nav is black, hover should still be red text only */
+nav.scrolled .nav-links a:hover{
+  color:var(--red);
+  background:transparent;
+}
+
+/* active tab = red box */
+.nav-links a.active{
+  background:var(--red);
+  color:var(--off-white);
+}
+
+/* keep active tab a red box even on scroll */
+nav.scrolled .nav-links a.active{
+  background:var(--red);
+  color:var(--off-white);
+}
+
+/* keep active tab from disappearing on hover */
+.nav-links a.active:hover,
+nav.scrolled .nav-links a.active:hover{
+  background:var(--red);
+  color:var(--off-white);
+}
+.logo-img{
+  height:50px;
+  width:auto;
+  display:block;
+}
+
+/* ── HERO ── */
+.hero{min-height:100vh;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;background:var(--black);border-bottom:1px solid rgba(242,239,232,0.08);position:relative;overflow:hidden;padding:120px 48px 80px}
+.hero-eyebrow{font-family:var(--mono);font-size:11px;letter-spacing:0.2em;text-transform:uppercase;color:rgba(242,239,232,0.35);margin-bottom:48px;position:relative;z-index:3}
+.hero-headline{font-family:var(--serif);font-size:clamp(44px,6.5vw,88px);line-height:1.05;letter-spacing:-0.025em;font-weight:400;color:var(--off-white);max-width:1000px;position:relative;z-index:3;will-change:transform}
+.hero-headline em{font-style:italic;color:var(--red)}
+.hero-cta-group{display:flex;gap:20px;align-items:center;margin-top:56px;position:relative;z-index:3}
+.btn-primary{font-family:var(--mono);font-size:11px;letter-spacing:0.12em;text-transform:uppercase;background:var(--off-white);color:var(--black);padding:14px 28px;text-decoration:none;transition:background 0.2s,color 0.2s;display:inline-block}
+.btn-primary:hover{background:var(--red);color:var(--off-white)}
+.btn-outline{font-family:var(--mono);font-size:11px;letter-spacing:0.12em;text-transform:uppercase;border:1px solid rgba(242,239,232,0.25);color:rgba(242,239,232,0.7);padding:13px 22px;text-decoration:none;transition:border-color 0.2s,color 0.2s}
+.btn-outline:hover{border-color:var(--off-white);color:var(--off-white)}
+.hero-scroll-hint{position:absolute;bottom:32px;left:50%;transform:translateX(-50%);font-family:var(--mono);font-size:10px;letter-spacing:0.16em;text-transform:uppercase;color:rgba(242,239,232,0.25);display:flex;flex-direction:column;align-items:center;gap:8px;z-index:3}
+.hero-scroll-line{width:1px;height:40px;background:rgba(242,239,232,0.15);animation:scrollPulse 2s ease-in-out infinite}
+@keyframes scrollPulse{0%,100%{opacity:0.3;transform:scaleY(1)}50%{opacity:1;transform:scaleY(1.3)}}
+
+/* parallax layers */
+.hero-layer{position:absolute;inset:0;pointer-events:none;will-change:transform}
+
+
+/* ── EXPERTISE TABS ── */
+.expertise{padding:0 48px;border-bottom:1px solid rgba(14,14,12,0.15)}
+.expertise-header{padding:56px 0 0;display:flex;align-items:baseline;justify-content:space-between;border-bottom:1px solid rgba(14,14,12,0.12);padding-bottom:32px}
+.expertise-label{font-family:var(--mono);font-size:10px;letter-spacing:0.18em;text-transform:uppercase;color:var(--mid)}
+.expertise-tabs{display:flex;gap:32px}
+.expertise-tab{font-family:var(--mono);font-size:11px;letter-spacing:0.1em;text-transform:uppercase;color:var(--mid);cursor:pointer;padding-bottom:4px;border-bottom:1px solid transparent;transition:color 0.2s,border-color 0.2s;background:none;border-top:none;border-left:none;border-right:none}
+.expertise-tab.active{color:var(--black);border-bottom-color:var(--black)}
+.expertise-tab:hover{color:var(--black)}
+
+.expertise-images{display:grid;grid-template-columns:repeat(3,1fr);gap:0;height:440px;margin-top:40px;margin-bottom:56px;border:1px solid rgba(14,14,12,0.12)}
+.expertise-img{overflow:hidden;position:relative;background:var(--stone);border-right:1px solid rgba(14,14,12,0.12)}
+.expertise-img:last-child{border-right:none}
+.expertise-img-inner{width:100%;height:100%;object-fit:cover;filter:grayscale(100%) contrast(1.05);transition:transform 0.6s ease,filter 0.4s ease;display:block}
+.expertise-img:hover .expertise-img-inner{transform:scale(1.04);filter:grayscale(40%)}
+.expertise-panel{display:none}
+.expertise-panel.active{display:block}
+
+/* sense placeholders using SVG */
+.svg-placeholder{width:100%;height:100%;display:flex;align-items:center;justify-content:center;background:var(--stone)}
+
+/* ── ABOUT STRIP ── */
+.about-strip{display:grid;grid-template-columns:1fr 1fr;border-bottom:1px solid rgba(14,14,12,0.15)}
+.about-strip-left{padding:80px 48px;border-right:1px solid rgba(14,14,12,0.15)}
+.about-strip-right{padding:80px 48px;display:flex;flex-direction:column;justify-content:space-between}
+.about-headline{font-family:var(--serif);font-size:clamp(32px,3.5vw,52px);line-height:1.1;font-weight:400;letter-spacing:-0.02em}
+.about-body{font-size:15px;line-height:1.8;color:rgba(14,14,12,0.68);max-width:460px}
+.about-body p+p{margin-top:18px}
+.about-em{font-family:var(--serif);font-style:italic;font-size:20px;line-height:1.4;letter-spacing:-0.01em;margin-top:20px;color:rgba(14,14,12,0.88)}
+
+/* ── WORK MARQUEE ── */
+.work-section{border-bottom:1px solid rgba(14,14,12,0.15);padding:64px 48px}
+.work-section-header{display:flex;justify-content:space-between;align-items:baseline;margin-bottom:40px}
+.section-title{font-family:var(--serif);font-size:clamp(28px,3vw,42px);font-weight:400;letter-spacing:-0.02em}
+.work-marquee-wrap{overflow:hidden;border-top:1px solid rgba(14,14,12,0.12);border-bottom:1px solid rgba(14,14,12,0.12);padding:32px 0}
+.work-marquee{display:flex;gap:20px;animation:marqueeScroll 30s linear infinite;width:max-content}
+.work-marquee:hover{animation-play-state:paused}
+.work-card{width:280px;flex-shrink:0;cursor:pointer}
+.work-card-img{height:340px;background:var(--stone);overflow:hidden;margin-bottom:16px;position:relative}
+.work-card-img svg{width:100%;height:100%}
+.work-card-img:hover .work-card-overlay{opacity:1}
+.work-card-overlay{position:absolute;inset:0;background:rgba(14,14,12,0.5);display:flex;align-items:center;justify-content:center;opacity:0;transition:opacity 0.3s}
+.work-card-overlay span{font-family:var(--mono);font-size:11px;letter-spacing:0.14em;text-transform:uppercase;color:var(--off-white)}
+.work-card-title{font-family:var(--serif);font-size:18px;font-weight:400;letter-spacing:-0.01em}
+.work-card-cat{font-family:var(--mono);font-size:10px;letter-spacing:0.14em;text-transform:uppercase;color:var(--mid);margin-top:4px}
+@keyframes marqueeScroll{0%{transform:translateX(0)}100%{transform:translateX(-50%)}}
+
+/* ── SERVICES ACCORDION ── */
+.services{border-bottom:1px solid rgba(14,14,12,0.15)}
+.services-header{padding:64px 48px 0}
+.service-item{border-top:1px solid rgba(14,14,12,0.15);overflow:hidden}
+.service-trigger{display:flex;justify-content:space-between;align-items:center;padding:32px 48px;cursor:pointer;transition:background 0.2s}
+.service-trigger:hover{background:rgba(14,14,12,0.02)}
+.service-trigger-left{display:flex;align-items:baseline;gap:32px}
+.service-num{font-family:var(--mono);font-size:11px;letter-spacing:0.14em;color:var(--red)}
+.service-name{font-family:var(--serif);font-size:clamp(24px,2.5vw,36px);font-weight:400;letter-spacing:-0.02em}
+.service-arrow{font-size:24px;color:var(--mid);transition:transform 0.3s}
+.service-item.open .service-arrow{transform:rotate(45deg)}
+.service-body{display:none;padding:0 48px 48px;display:grid;grid-template-columns:1fr 1fr;gap:40px}
+.service-body{display:none}
+.service-item.open .service-body{display:grid}
+.service-list{list-style:none;display:flex;flex-direction:column;gap:0}
+.service-list li{padding:12px 0;border-bottom:1px solid rgba(14,14,12,0.08);font-size:14px;color:rgba(14,14,12,0.7);display:flex;align-items:center;gap:12px}
+.service-list li::before{content:'—';color:var(--red);flex-shrink:0}
+.service-desc{font-size:15px;line-height:1.75;color:rgba(14,14,12,0.68)}
+.service-img{height:240px;background:var(--stone);overflow:hidden}
+.service-img svg{width:100%;height:100%}
+
+/* ── TEAM ── */
+.team{border-bottom:1px solid rgba(14,14,12,0.15)}
+.team-header{padding:64px 48px 0;display:flex;justify-content:space-between;align-items:flex-end;border-bottom:1px solid rgba(14,14,12,0.15);padding-bottom:48px}
+.team-intro{font-size:15px;line-height:1.75;color:rgba(14,14,12,0.68);max-width:480px}
+.team-grid{display:grid;grid-template-columns:repeat(5,1fr)}
+.team-card{border-right:1px solid rgba(14,14,12,0.15);cursor:pointer;transition:background 0.2s}
+.team-card:last-child{border-right:none}
+.team-card:hover{background:rgba(14,14,12,0.03)}
+.team-photo{aspect-ratio:3/4;background:var(--stone);overflow:hidden;position:relative}
+.team-photo svg{width:100%;height:100%}
+.team-info{padding:20px}
+.team-name{font-family:var(--serif);font-size:17px;font-weight:400;letter-spacing:-0.01em;margin-bottom:4px}
+.team-role{font-family:var(--mono);font-size:10px;letter-spacing:0.12em;text-transform:uppercase;color:var(--mid)}
+.team-sense{font-family:var(--mono);font-size:10px;letter-spacing:0.1em;text-transform:uppercase;color:var(--red);margin-top:10px;padding-top:10px;border-top:1px solid rgba(14,14,12,0.1)}
+
+/* team modal */
+.modal-overlay{position:fixed;inset:0;background:rgba(14,14,12,0.6);z-index:500;display:none;align-items:center;justify-content:center;padding:40px}
+.modal-overlay.open{display:flex}
+.modal{background:var(--off-white);max-width:720px;width:100%;padding:56px;position:relative;max-height:80vh;overflow-y:auto}
+.modal-close{position:absolute;top:24px;right:24px;background:none;border:none;font-size:24px;cursor:pointer;color:var(--mid);line-height:1}
+.modal-close:hover{color:var(--black)}
+.modal-name{font-family:var(--serif);font-size:36px;font-weight:400;letter-spacing:-0.02em;margin-bottom:6px}
+.modal-role{font-family:var(--mono);font-size:11px;letter-spacing:0.14em;text-transform:uppercase;color:var(--red);margin-bottom:28px}
+.modal-body{font-size:15px;line-height:1.8;color:rgba(14,14,12,0.7)}
+
+/* ── STATS ── */
+.stats{background:var(--black);display:grid;grid-template-columns:repeat(5,1fr);border-bottom:1px solid rgba(242,239,232,0.06)}
+.stat-item{padding:56px 32px;border-right:1px solid rgba(242,239,232,0.06)}
+.stat-item:last-child{border-right:none}
+.stat-num{font-family:var(--serif);font-size:64px;font-weight:400;line-height:1;letter-spacing:-0.03em;color:var(--off-white)}
+.stat-label{font-family:var(--mono);font-size:10px;letter-spacing:0.14em;text-transform:uppercase;color:rgba(242,239,232,0.3);margin-top:8px}
+.stat-desc{font-size:13px;line-height:1.6;color:rgba(242,239,232,0.45);margin-top:6px}
+
+/* ── FAQ ── */
+.faq{border-bottom:1px solid rgba(14,14,12,0.15)}
+.faq-header{padding:64px 48px 32px;border-bottom:1px solid rgba(14,14,12,0.15)}
+.faq-header-inner{display:flex;justify-content:space-between;align-items:flex-end}
+.faq-item{border-bottom:1px solid rgba(14,14,12,0.12)}
+.faq-q{display:flex;justify-content:space-between;align-items:center;padding:24px 48px;cursor:pointer;transition:background 0.2s;font-size:16px;font-weight:400}
+.faq-q:hover{background:rgba(14,14,12,0.02)}
+.faq-icon{font-size:22px;color:var(--mid);flex-shrink:0;margin-left:24px;transition:transform 0.3s;font-family:var(--mono)}
+.faq-item.open .faq-icon{transform:rotate(45deg)}
+.faq-a{display:none;padding:0 48px 28px;font-size:14px;line-height:1.8;color:rgba(14,14,12,0.65);max-width:640px}
+.faq-item.open .faq-a{display:block}
+
+/* ── MANIFESTO ── */
+.manifesto{background:var(--black);color:var(--off-white);padding:120px 48px;display:flex;flex-direction:column;align-items:center;text-align:center;gap:28px;position:relative;overflow:hidden;border-bottom:1px solid rgba(242,239,232,0.06)}
+.manifesto-bg{position:absolute;font-family:var(--mono);font-size:400px;font-weight:500;color:rgba(242,239,232,0.025);user-select:none;top:50%;left:50%;transform:translate(-50%,-50%);line-height:1;letter-spacing:-0.05em}
+.manifesto-label{font-family:var(--mono);font-size:10px;letter-spacing:0.18em;text-transform:uppercase;color:rgba(242,239,232,0.3);position:relative}
+.manifesto-line{font-family:var(--serif);font-size:clamp(36px,5vw,68px);font-weight:400;line-height:1.08;letter-spacing:-0.02em;max-width:900px;position:relative}
+.manifesto-line em{color:var(--red);font-style:italic}
+
+/* ── FOOTER ── */
+footer{background:var(--black);color:var(--off-white);display:grid;grid-template-columns:1fr 1fr}
+.footer-left{padding:80px 48px;border-right:1px solid rgba(242,239,232,0.08);display:flex;flex-direction:column;justify-content:space-between}
+.footer-headline{font-family:var(--serif);font-size:clamp(32px,4vw,56px);line-height:1.08;font-weight:400;letter-spacing:-0.02em}
+.footer-headline em{color:var(--red);font-style:italic}
+.footer-right{padding:80px 48px;display:flex;flex-direction:column;justify-content:space-between}
+.footer-links{display:grid;grid-template-columns:1fr 1fr;gap:40px 48px}
+.footer-link-group h4{font-family:var(--mono);font-size:10px;letter-spacing:0.16em;text-transform:uppercase;color:rgba(242,239,232,0.3);margin-bottom:16px;font-weight:400}
+.footer-link-group a{display:block;font-size:14px;color:rgba(242,239,232,0.6);text-decoration:none;margin-bottom:10px;transition:color 0.2s}
+.footer-link-group a:hover{color:var(--off-white)}
+.footer-bottom{display:flex;justify-content:space-between;align-items:flex-end;border-top:1px solid rgba(242,239,232,0.08);padding-top:28px;margin-top:56px}
+.footer-tagline{font-family:var(--serif);font-size:14px;font-style:italic;color:rgba(242,239,232,0.3)}
+.footer-copy{font-family:var(--mono);font-size:10px;letter-spacing:0.1em;text-transform:uppercase;color:rgba(242,239,232,0.2)}
+.footer-social{display:flex;gap:20px}
+.footer-social a{font-family:var(--mono);font-size:10px;letter-spacing:0.12em;text-transform:uppercase;color:rgba(242,239,232,0.4);text-decoration:none;transition:color 0.2s}
+.footer-social a:hover{color:var(--off-white)}
+
+/* ── PRESS TICKER ── */
+.press-ticker{border-bottom:1px solid rgba(14,14,12,0.15);padding:20px 0;overflow:hidden;white-space:nowrap;background:var(--off-white)}
+.press-track{display:inline-flex;animation:pressScroll 40s linear infinite;gap:0}
+.press-item{font-family:var(--mono);font-size:11px;letter-spacing:0.1em;text-transform:uppercase;padding:0 48px;color:var(--mid);border-right:1px solid rgba(14,14,12,0.12)}
+@keyframes pressScroll{0%{transform:translateX(0)}100%{transform:translateX(-50%)}}
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav id="nav">
+  <a href="five-index.html" class="nav-logo">
+  <img src="five.png" alt="FIVE Studio logo" class="logo-img">
+</a>
+   <div class="nav-links">
+    <a href="work.html">WORK</a>
+    <a href="five-service.html">SERVICES</a>
+    <a href="five-about.html"class="active">ABOUT</a>
+    <a href="five-press.html">PRESS</a>
+    <a href="five-contact.html">CONTACT</a>
+  </div>
+</nav>
+
+<!-- HERO -->
+<section class="hero" id="hero">
+  <!-- Corner marks -->
+  <div class="hero-corner hero-corner-tl"></div>
+  <div class="hero-corner hero-corner-tr"></div>
+  <div class="hero-corner hero-corner-bl"></div>
+  <div class="hero-corner hero-corner-br"></div>
+
+  <!-- Wave line canvas -->
+  <canvas id="contourCanvas" style="position:absolute;inset:0;width:100%;height:100%;z-index:1;pointer-events:none"></canvas>
+
+  <!-- Content -->
+  <h1 class="hero-headline" id="parallax-text">
+    You are building something<br>
+    the world is waiting for.<br>
+    We make sure it <em>feels</em> it.
+  </h1>
+  <div class="hero-cta-group">
+    <a href="#expertise" class="btn-outline">Our Approach</a>
+    <a href="#contact" class="btn-primary">Start a Project</a>
+  </div>
+</section>
+
+<!-- EXPERTISE TABS -->
+<section class="expertise" id="expertise">
+  <div class="expertise-header">
+    <span class="expertise-label">Our Expertise</span>
+    <div class="expertise-tabs">
+      <button class="expertise-tab active" data-panel="sight">Sight</button>
+      <button class="expertise-tab" data-panel="sound">Sound</button>
+      <button class="expertise-tab" data-panel="touch">Touch</button>
+      <button class="expertise-tab" data-panel="smell">Smell</button>
+      <button class="expertise-tab" data-panel="taste">Taste</button>
+    </div>
+  </div>
+
+  <div class="expertise-panel active" id="panel-sight">
+    <div class="expertise-images">
+      <div class="expertise-img">
+        <svg viewBox="0 0 400 440" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid slice" style="width:100%;height:100%;display:block;background:#C4C0B8">
+          <g fill="none" stroke="rgba(14,14,12,0.15)" stroke-width="1">
+            <ellipse cx="200" cy="220" rx="14" ry="9"/><ellipse cx="200" cy="220" rx="32" ry="22"/>
+            <ellipse cx="200" cy="220" rx="52" ry="37"/><ellipse cx="200" cy="220" rx="74" ry="54"/>
+            <ellipse cx="200" cy="220" rx="98" ry="73"/><ellipse cx="200" cy="220" rx="124" ry="94"/>
+            <ellipse cx="200" cy="220" rx="152" ry="117"/><ellipse cx="200" cy="220" rx="182" ry="142"/>
+            <ellipse cx="200" cy="220" rx="214" ry="169"/><ellipse cx="200" cy="220" rx="248" ry="198"/>
+          </g>
+          <circle cx="200" cy="220" r="6" fill="rgba(14,14,12,0.5)"/>
+          <circle cx="200" cy="220" r="2.5" fill="rgba(14,14,12,0.9)"/>
+          <text x="200" y="420" text-anchor="middle" font-family="monospace" font-size="9" fill="rgba(14,14,12,0.3)" letter-spacing="3">SIGHT — VISUAL IDENTITY</text>
+        </svg>
+      </div>
+      <div class="expertise-img">
+        <svg viewBox="0 0 400 440" xmlns="http://www.w3.org/2000/svg" style="width:100%;height:100%;display:block;background:#B8B4AC">
+          <g stroke="rgba(14,14,12,0.18)" stroke-width="0.8" fill="none">
+            <line x1="200" y1="220" x2="400" y2="0"/><line x1="200" y1="220" x2="360" y2="0"/>
+            <line x1="200" y1="220" x2="320" y2="0"/><line x1="200" y1="220" x2="280" y2="0"/>
+            <line x1="200" y1="220" x2="240" y2="0"/><line x1="200" y1="220" x2="200" y2="0"/>
+            <line x1="200" y1="220" x2="160" y2="0"/><line x1="200" y1="220" x2="120" y2="0"/>
+            <line x1="200" y1="220" x2="80" y2="0"/><line x1="200" y1="220" x2="40" y2="0"/>
+            <line x1="200" y1="220" x2="0" y2="0"/><line x1="200" y1="220" x2="0" y2="60"/>
+            <line x1="200" y1="220" x2="0" y2="120"/><line x1="200" y1="220" x2="0" y2="180"/>
+            <line x1="200" y1="220" x2="0" y2="240"/><line x1="200" y1="220" x2="0" y2="300"/>
+            <line x1="200" y1="220" x2="0" y2="360"/><line x1="200" y1="220" x2="0" y2="440"/>
+            <line x1="200" y1="220" x2="80" y2="440"/><line x1="200" y1="220" x2="160" y2="440"/>
+            <line x1="200" y1="220" x2="240" y2="440"/><line x1="200" y1="220" x2="320" y2="440"/>
+            <line x1="200" y1="220" x2="400" y2="440"/><line x1="200" y1="220" x2="400" y2="360"/>
+            <line x1="200" y1="220" x2="400" y2="280"/><line x1="200" y1="220" x2="400" y2="200"/>
+            <line x1="200" y1="220" x2="400" y2="120"/><line x1="200" y1="220" x2="400" y2="40"/>
+          </g>
+          <circle cx="200" cy="220" r="5" fill="rgba(14,14,12,0.5)"/>
+        </svg>
+      </div>
+      <div class="expertise-img" style="border-right:none">
+        <svg viewBox="0 0 400 440" xmlns="http://www.w3.org/2000/svg" style="width:100%;height:100%;display:block;background:#0E0E0C">
+          <g fill="none" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M280 80L140 80L110 190" stroke="#F2EFE8" stroke-width="10"/>
+            <path d="M285 87L145 87L116 197" stroke="rgba(242,239,232,0.5)" stroke-width="6"/>
+            <path d="M290 94L150 94L122 204" stroke="rgba(242,239,232,0.25)" stroke-width="3.5"/>
+            <path d="M110 190Q80 230 110 270Q144 320 210 320Q280 320 310 270Q336 224 304 180Q276 144 220 144L170 144" stroke="#F2EFE8" stroke-width="10"/>
+            <path d="M116 197Q86 237 116 277Q150 327 216 327Q286 327 316 277Q342 231 310 187Q282 151 226 151L176 151" stroke="rgba(242,239,232,0.5)" stroke-width="6"/>
+            <path d="M122 204Q92 244 122 284Q156 334 222 334Q292 334 322 284Q348 238 316 194Q288 158 232 158L182 158" stroke="rgba(242,239,232,0.25)" stroke-width="3.5"/>
+          </g>
+          <text x="200" y="420" text-anchor="middle" font-family="monospace" font-size="9" fill="rgba(242,239,232,0.2)" letter-spacing="3">FIVE.STUDIO</text>
+        </svg>
+      </div>
+    </div>
+    <p style="font-family:var(--mono);font-size:11px;letter-spacing:0.14em;text-transform:uppercase;color:var(--mid);margin-bottom:56px;">Sight — the color that stops them mid-scroll. The logo that holds its meaning across every surface. The visual language your brand speaks when you're not in the room.</p>
+  </div>
+
+  <div class="expertise-panel" id="panel-sound">
+    <div class="expertise-images">
+      <div class="expertise-img">
+        <svg viewBox="0 0 400 440" xmlns="http://www.w3.org/2000/svg" style="width:100%;height:100%;display:block;background:#C4C0B8">
+          <g fill="none" stroke="rgba(14,14,12,0.2)" stroke-width="1.2">
+            <path d="M0,320 Q100,240 200,280 Q300,320 400,200"/><path d="M0,280 Q100,200 200,240 Q300,280 400,160"/>
+            <path d="M0,240 Q100,160 200,200 Q300,240 400,120"/><path d="M0,200 Q100,120 200,160 Q300,200 400,80"/>
+            <path d="M0,360 Q100,280 200,320 Q300,360 400,240"/><path d="M0,400 Q100,320 200,360 Q300,400 400,280"/>
+            <path d="M0,160 Q100,80 200,120 Q300,160 400,40"/>
+          </g>
+          <text x="200" y="430" text-anchor="middle" font-family="monospace" font-size="9" fill="rgba(14,14,12,0.3)" letter-spacing="3">SOUND — BRAND VOICE</text>
+        </svg>
+      </div>
+      <div class="expertise-img">
+        <svg viewBox="0 0 400 440" xmlns="http://www.w3.org/2000/svg" style="width:100%;height:100%;display:block;background:#A8A49C">
+          <g fill="none" stroke="rgba(14,14,12,0.15)" stroke-width="1">
+            <rect x="40" y="40" width="320" height="360"/><rect x="70" y="70" width="260" height="300"/>
+            <rect x="100" y="100" width="200" height="240"/><rect x="130" y="130" width="140" height="180"/>
+            <rect x="160" y="160" width="80" height="120"/><rect x="180" y="185" width="40" height="70"/>
+          </g>
+          <circle cx="200" cy="220" r="5" fill="rgba(14,14,12,0.45)"/>
+        </svg>
+      </div>
+      <div class="expertise-img" style="border-right:none;background:#888880">
+        <svg viewBox="0 0 400 440" xmlns="http://www.w3.org/2000/svg" style="width:100%;height:100%;display:block">
+          <text x="200" y="240" text-anchor="middle" font-family="Georgia, serif" font-style="italic" font-size="72" fill="rgba(242,239,232,0.12)" letter-spacing="-2">voice</text>
+          <text x="200" y="290" text-anchor="middle" font-family="monospace" font-size="10" fill="rgba(242,239,232,0.2)" letter-spacing="4">BRAND STRATEGY</text>
+        </svg>
+      </div>
+    </div>
+    <p style="font-family:var(--mono);font-size:11px;letter-spacing:0.14em;text-transform:uppercase;color:var(--mid);margin-bottom:56px;">Sound — the cadence of your copy. The tone that fills a room. How your brand speaks when you're not there to speak for it.</p>
+  </div>
+
+  <div class="expertise-panel" id="panel-touch">
+    <div class="expertise-images">
+      <div class="expertise-img">
+        <svg viewBox="0 0 400 440" xmlns="http://www.w3.org/2000/svg" style="width:100%;height:100%;display:block;background:#C8C4BC">
+          <g fill="none" stroke="rgba(14,14,12,0.15)" stroke-width="1.5">
+            <path d="M200 80 L200 360"/><path d="M80 220 L320 220"/>
+            <path d="M120 120 L280 320"/><path d="M280 120 L120 320"/>
+            <circle cx="200" cy="220" r="60"/><circle cx="200" cy="220" r="100"/><circle cx="200" cy="220" r="140"/>
+          </g>
+          <circle cx="200" cy="220" r="8" fill="rgba(14,14,12,0.35)"/>
+        </svg>
+      </div>
+      <div class="expertise-img">
+        <svg viewBox="0 0 400 440" xmlns="http://www.w3.org/2000/svg" style="width:100%;height:100%;display:block;background:#B0ACAA">
+          <g fill="rgba(14,14,12,0.07)">
+            <rect x="40" y="100" width="140" height="200" rx="4"/><rect x="220" y="120" width="140" height="200" rx="4"/>
+            <rect x="100" y="60" width="200" height="30" rx="3"/>
+          </g>
+          <g fill="none" stroke="rgba(14,14,12,0.2)" stroke-width="1">
+            <rect x="40" y="100" width="140" height="200" rx="4"/><rect x="220" y="120" width="140" height="200" rx="4"/>
+            <rect x="100" y="60" width="200" height="30" rx="3"/>
+          </g>
+          <text x="200" y="390" text-anchor="middle" font-family="monospace" font-size="9" fill="rgba(14,14,12,0.3)" letter-spacing="3">TOUCH — PACKAGING</text>
+        </svg>
+      </div>
+      <div class="expertise-img" style="border-right:none;background:#2C2C28">
+        <svg viewBox="0 0 400 440" xmlns="http://www.w3.org/2000/svg" style="width:100%;height:100%;display:block">
+          <text x="200" y="250" text-anchor="middle" font-family="Georgia,serif" font-size="130" fill="rgba(242,239,232,0.06)">5</text>
+          <text x="200" y="390" text-anchor="middle" font-family="monospace" font-size="9" fill="rgba(242,239,232,0.2)" letter-spacing="3">PACKAGING DESIGN</text>
+        </svg>
+      </div>
+    </div>
+    <p style="font-family:var(--mono);font-size:11px;letter-spacing:0.14em;text-transform:uppercase;color:var(--mid);margin-bottom:56px;">Touch — the weight in the hand. The texture under the thumb. Packaging that converts before it's even opened.</p>
+  </div>
+
+  <div class="expertise-panel" id="panel-smell">
+    <div class="expertise-images">
+      <div class="expertise-img">
+        <svg viewBox="0 0 400 440" xmlns="http://www.w3.org/2000/svg" style="width:100%;height:100%;display:block;background:#A0A098">
+          <g fill="none" stroke="rgba(14,14,12,0.2)" stroke-width="1.2">
+            <path d="M60 80 Q200 180 340 80"/><path d="M60 130 Q200 230 340 130"/>
+            <path d="M60 180 Q200 280 340 180"/><path d="M60 230 Q200 330 340 230"/>
+            <path d="M60 280 Q200 380 340 280"/><path d="M60 330 Q200 430 340 330"/>
+          </g>
+        </svg>
+      </div>
+      <div class="expertise-img">
+        <svg viewBox="0 0 400 440" xmlns="http://www.w3.org/2000/svg" style="width:100%;height:100%;display:block;background:#C4C0B8">
+          <g fill="none" stroke="rgba(14,14,12,0.15)" stroke-width="1">
+            <ellipse cx="200" cy="220" rx="20" ry="30"/><ellipse cx="200" cy="220" rx="50" ry="75"/>
+            <ellipse cx="200" cy="220" rx="90" ry="135"/><ellipse cx="200" cy="220" rx="140" ry="200"/>
+          </g>
+        </svg>
+      </div>
+      <div class="expertise-img" style="border-right:none;background:#6C6C68">
+        <svg viewBox="0 0 400 440" xmlns="http://www.w3.org/2000/svg" style="width:100%;height:100%;display:block">
+          <text x="200" y="240" text-anchor="middle" font-family="Georgia,serif" font-style="italic" font-size="52" fill="rgba(242,239,232,0.12)">spatial</text>
+          <text x="200" y="290" text-anchor="middle" font-family="monospace" font-size="9" fill="rgba(242,239,232,0.2)" letter-spacing="4">SPATIAL DESIGN</text>
+        </svg>
+      </div>
+    </div>
+    <p style="font-family:var(--mono);font-size:11px;letter-spacing:0.14em;text-transform:uppercase;color:var(--mid);margin-bottom:56px;">Smell — the atmosphere of a space before a word is spoken. What your brand smells like on a shelf. The environment your brand inhabits.</p>
+  </div>
+
+  <div class="expertise-panel" id="panel-taste">
+    <div class="expertise-images">
+      <div class="expertise-img">
+        <svg viewBox="0 0 400 440" xmlns="http://www.w3.org/2000/svg" style="width:100%;height:100%;display:block;background:#888880">
+          <g fill="none" stroke="rgba(242,239,232,0.15)" stroke-width="1.2">
+            <path d="M40 40 L360 40 L360 400 L40 400 Z"/><path d="M80 80 L320 80 L320 360 L80 360 Z"/>
+            <path d="M120 120 L280 120 L280 320 L120 320 Z"/><path d="M160 160 L240 160 L240 280 L160 280 Z"/>
+          </g>
+          <circle cx="200" cy="220" r="30" fill="none" stroke="rgba(242,239,232,0.3)" stroke-width="1.5"/>
+          <circle cx="200" cy="220" r="5" fill="rgba(242,239,232,0.4)"/>
+        </svg>
+      </div>
+      <div class="expertise-img">
+        <svg viewBox="0 0 400 440" xmlns="http://www.w3.org/2000/svg" style="width:100%;height:100%;display:block;background:#C0BDB6">
+          <g fill="none" stroke="rgba(14,14,12,0.15)" stroke-width="1">
+            <path d="M40 220 Q120 100 200 220 Q280 340 360 220"/>
+            <path d="M40 180 Q120 60 200 180 Q280 300 360 180"/>
+            <path d="M40 260 Q120 140 200 260 Q280 380 360 260"/>
+          </g>
+          <text x="200" y="420" text-anchor="middle" font-family="monospace" font-size="9" fill="rgba(14,14,12,0.3)" letter-spacing="3">TASTE — FULL SYSTEM</text>
+        </svg>
+      </div>
+      <div class="expertise-img" style="border-right:none;background:#0E0E0C">
+        <svg viewBox="0 0 400 440" xmlns="http://www.w3.org/2000/svg" style="width:100%;height:100%;display:block">
+          <text x="200" y="280" text-anchor="middle" font-family="monospace" font-size="200" fill="rgba(200,37,30,0.15)">5</text>
+          <text x="200" y="390" text-anchor="middle" font-family="monospace" font-size="9" fill="rgba(242,239,232,0.2)" letter-spacing="3">SENSORY SYSTEMS</text>
+        </svg>
+      </div>
+    </div>
+    <p style="font-family:var(--mono);font-size:11px;letter-spacing:0.14em;text-transform:uppercase;color:var(--mid);margin-bottom:56px;">Taste — the full architecture. How all five senses become one coherent system — from first touch to lasting memory.</p>
+  </div>
+</section>
+
+<!-- ABOUT -->
+<div class="about-strip" id="about">
+  <div class="about-strip-left">
+    <p style="font-family:var(--mono);font-size:10px;letter-spacing:0.18em;text-transform:uppercase;color:var(--mid);margin-bottom:40px;display:flex;align-items:center;gap:12px"><span style="color:var(--red)">02</span> Who We Are</p>
+    <h2 class="about-headline">Built for brands<br>that are <em style="font-style:italic;color:var(--red)">becoming.</em></h2>
+    <p class="about-em">Most agencies are built for brands that already exist. We are built for the ones becoming.</p>
+  </div>
+  <div class="about-strip-right">
+    <div class="about-body">
+      <p>FIVE is a branding studio built on the conviction that identity is a full-body experience. With deep expertise across beauty, fitness, and fashion, we create strategic branding, standout packaging, and sensory systems that help brands do things right — and win.</p>
+      <p>We partner with new brands who are serious about being felt, remembered, and chosen — not just recognized. We ask what your brand feels like in the hand, sounds like in a room, smells like on a shelf. We do not reach for the palette until we understand the sensation.</p>
+    </div>
+    <div style="display:flex;gap:40px;margin-top:48px;border-top:1px solid rgba(14,14,12,0.12);padding-top:32px">
+      <div><div style="font-family:var(--serif);font-size:48px;letter-spacing:-0.03em;line-height:1">5</div><div style="font-family:var(--mono);font-size:10px;letter-spacing:0.14em;text-transform:uppercase;color:var(--mid);margin-top:6px">Senses</div></div>
+      <div><div style="font-family:var(--serif);font-size:48px;letter-spacing:-0.03em;line-height:1">5</div><div style="font-family:var(--mono);font-size:10px;letter-spacing:0.14em;text-transform:uppercase;color:var(--mid);margin-top:6px">Services</div></div>
+      <div><div style="font-family:var(--serif);font-size:48px;letter-spacing:-0.03em;line-height:1">5</div><div style="font-family:var(--mono);font-size:10px;letter-spacing:0.14em;text-transform:uppercase;color:var(--mid);margin-top:6px">People</div></div>
+      <div><div style="font-family:var(--serif);font-size:48px;letter-spacing:-0.03em;line-height:1">5</div><div style="font-family:var(--mono);font-size:10px;letter-spacing:0.14em;text-transform:uppercase;color:var(--mid);margin-top:6px">Disciplines</div></div>
+    </div>
+  </div>
+</div>
+
+<!-- WORK -->
+<section id="work" style="border-bottom:1px solid rgba(14,14,12,0.15)">
+  <div class="work-section">
+    <div class="work-section-header">
+      <h2 class="section-title">Our Work</h2>
+      <a href="#" style="font-family:var(--mono);font-size:11px;letter-spacing:0.12em;text-transform:uppercase;color:var(--mid);text-decoration:none;border-bottom:1px solid currentColor;padding-bottom:2px">View All</a>
+    </div>
+    <div class="work-marquee-wrap">
+      <div class="work-marquee" id="marquee">
+        <!-- Cards set 1 -->
+        <div class="work-card">
+          <div class="work-card-img" style="background:#C4C0B8">
+            <svg width="100%" height="100%" viewBox="0 0 280 340" xmlns="http://www.w3.org/2000/svg"><g fill="none" stroke="rgba(14,14,12,0.15)" stroke-width="1"><ellipse cx="140" cy="170" rx="20" ry="13"/><ellipse cx="140" cy="170" rx="44" ry="30"/><ellipse cx="140" cy="170" rx="72" ry="50"/><ellipse cx="140" cy="170" rx="104" ry="74"/><ellipse cx="140" cy="170" rx="140" ry="100"/></g><circle cx="140" cy="170" r="5" fill="rgba(14,14,12,0.4)"/></svg>
+            <div class="work-card-overlay"><span>View Project</span></div>
+          </div>
+          <p class="work-card-title">Aurore Beauty</p>
+          <p class="work-card-cat">Visual Identity</p>
+        </div>
+        <div class="work-card">
+          <div class="work-card-img" style="background:#0E0E0C">
+            <svg width="100%" height="100%" viewBox="0 0 280 340" xmlns="http://www.w3.org/2000/svg"><g fill="none" stroke-linecap="round" stroke-linejoin="round"><path d="M200 60L100 60L80 140" stroke="#F2EFE8" stroke-width="8"/><path d="M204 66L104 66L84 146" stroke="rgba(242,239,232,0.4)" stroke-width="5"/><path d="M80 140Q60 165 80 190Q100 220 140 220Q180 220 200 190Q218 163 198 135Q182 112 155 112L120 112" stroke="#F2EFE8" stroke-width="8"/><path d="M84 146Q64 171 84 196Q104 226 144 226Q184 226 204 196Q222 169 202 141Q186 118 159 118L124 118" stroke="rgba(242,239,232,0.4)" stroke-width="5"/></g></svg>
+            <div class="work-card-overlay"><span>View Project</span></div>
+          </div>
+          <p class="work-card-title">Volta Fitness</p>
+          <p class="work-card-cat">Brand Strategy</p>
+        </div>
+        <div class="work-card">
+          <div class="work-card-img" style="background:#A8A49C">
+            <svg width="100%" height="100%" viewBox="0 0 280 340" xmlns="http://www.w3.org/2000/svg"><g stroke="rgba(14,14,12,0.18)" stroke-width="0.8" fill="none"><line x1="140" y1="170" x2="280" y2="0"/><line x1="140" y1="170" x2="252" y2="0"/><line x1="140" y1="170" x2="224" y2="0"/><line x1="140" y1="170" x2="196" y2="0"/><line x1="140" y1="170" x2="168" y2="0"/><line x1="140" y1="170" x2="140" y2="0"/><line x1="140" y1="170" x2="112" y2="0"/><line x1="140" y1="170" x2="84" y2="0"/><line x1="140" y1="170" x2="56" y2="0"/><line x1="140" y1="170" x2="28" y2="0"/><line x1="140" y1="170" x2="0" y2="0"/><line x1="140" y1="170" x2="0" y2="60"/><line x1="140" y1="170" x2="0" y2="120"/><line x1="140" y1="170" x2="0" y2="180"/><line x1="140" y1="170" x2="0" y2="240"/><line x1="140" y1="170" x2="0" y2="300"/><line x1="140" y1="170" x2="0" y2="340"/><line x1="140" y1="170" x2="70" y2="340"/><line x1="140" y1="170" x2="140" y2="340"/><line x1="140" y1="170" x2="210" y2="340"/><line x1="140" y1="170" x2="280" y2="340"/><line x1="140" y1="170" x2="280" y2="280"/><line x1="140" y1="170" x2="280" y2="220"/><line x1="140" y1="170" x2="280" y2="160"/><line x1="140" y1="170" x2="280" y2="100"/><line x1="140" y1="170" x2="280" y2="40"/></g><circle cx="140" cy="170" r="4" fill="rgba(14,14,12,0.5)"/></svg>
+            <div class="work-card-overlay"><span>View Project</span></div>
+          </div>
+          <p class="work-card-title">Maison Celeste</p>
+          <p class="work-card-cat">Packaging</p>
+        </div>
+        <div class="work-card">
+          <div class="work-card-img" style="background:#C8251E">
+            <svg width="100%" height="100%" viewBox="0 0 280 340" xmlns="http://www.w3.org/2000/svg"><g fill="none" stroke="rgba(242,239,232,0.3)" stroke-width="1"><ellipse cx="140" cy="170" rx="20" ry="13"/><ellipse cx="140" cy="170" rx="50" ry="35"/><ellipse cx="140" cy="170" rx="90" ry="65"/><ellipse cx="140" cy="170" rx="140" ry="100"/></g><text x="140" y="185" text-anchor="middle" font-family="monospace" font-size="72" fill="rgba(242,239,232,0.12)">5</text></svg>
+            <div class="work-card-overlay"><span>View Project</span></div>
+          </div>
+          <p class="work-card-title">Sable & Co</p>
+          <p class="work-card-cat">Sensory Systems</p>
+        </div>
+        <div class="work-card">
+          <div class="work-card-img" style="background:#D0CEC6">
+            <svg width="100%" height="100%" viewBox="0 0 280 340" xmlns="http://www.w3.org/2000/svg"><g fill="none" stroke="rgba(14,14,12,0.2)" stroke-width="1"><path d="M40 80 Q140 140 240 80"/><path d="M40 120 Q140 180 240 120"/><path d="M40 160 Q140 220 240 160"/><path d="M40 200 Q140 260 240 200"/><path d="M40 240 Q140 300 240 240"/><path d="M40 280 Q140 340 240 280"/></g></svg>
+            <div class="work-card-overlay"><span>View Project</span></div>
+          </div>
+          <p class="work-card-title">Nordvik Health</p>
+          <p class="work-card-cat">Brand Identity</p>
+        </div>
+        <div class="work-card">
+          <div class="work-card-img" style="background:#888880">
+            <svg width="100%" height="100%" viewBox="0 0 280 340" xmlns="http://www.w3.org/2000/svg"><g fill="none" stroke="rgba(242,239,232,0.18)" stroke-width="1.5"><rect x="40" y="40" width="200" height="260"/><rect x="65" y="65" width="150" height="210"/><rect x="90" y="90" width="100" height="160"/><rect x="115" y="115" width="50" height="110"/></g><circle cx="140" cy="170" r="15" fill="none" stroke="rgba(242,239,232,0.3)" stroke-width="1.5"/></svg>
+            <div class="work-card-overlay"><span>View Project</span></div>
+          </div>
+          <p class="work-card-title">Peau Douce</p>
+          <p class="work-card-cat">Spatial Design</p>
+        </div>
+        <!-- Cards set 2 (duplicate for infinite scroll) -->
+        <div class="work-card"><div class="work-card-img" style="background:#C4C0B8"><svg width="100%" height="100%" viewBox="0 0 280 340" xmlns="http://www.w3.org/2000/svg"><g fill="none" stroke="rgba(14,14,12,0.15)" stroke-width="1"><ellipse cx="140" cy="170" rx="20" ry="13"/><ellipse cx="140" cy="170" rx="44" ry="30"/><ellipse cx="140" cy="170" rx="72" ry="50"/><ellipse cx="140" cy="170" rx="104" ry="74"/><ellipse cx="140" cy="170" rx="140" ry="100"/></g><circle cx="140" cy="170" r="5" fill="rgba(14,14,12,0.4)"/></svg><div class="work-card-overlay"><span>View Project</span></div></div><p class="work-card-title">Aurore Beauty</p><p class="work-card-cat">Visual Identity</p></div>
+        <div class="work-card"><div class="work-card-img" style="background:#0E0E0C"><svg width="100%" height="100%" viewBox="0 0 280 340" xmlns="http://www.w3.org/2000/svg"><g fill="none" stroke-linecap="round" stroke-linejoin="round"><path d="M200 60L100 60L80 140" stroke="#F2EFE8" stroke-width="8"/><path d="M80 140Q60 165 80 190Q100 220 140 220Q180 220 200 190Q218 163 198 135Q182 112 155 112L120 112" stroke="#F2EFE8" stroke-width="8"/></g></svg><div class="work-card-overlay"><span>View Project</span></div></div><p class="work-card-title">Volta Fitness</p><p class="work-card-cat">Brand Strategy</p></div>
+        <div class="work-card"><div class="work-card-img" style="background:#A8A49C"><svg width="100%" height="100%" viewBox="0 0 280 340" xmlns="http://www.w3.org/2000/svg"><g stroke="rgba(14,14,12,0.18)" stroke-width="0.8" fill="none"><line x1="140" y1="170" x2="280" y2="0"/><line x1="140" y1="170" x2="0" y2="0"/><line x1="140" y1="170" x2="0" y2="340"/><line x1="140" y1="170" x2="280" y2="340"/><line x1="140" y1="170" x2="280" y2="170"/><line x1="140" y1="170" x2="0" y2="170"/><line x1="140" y1="170" x2="140" y2="0"/><line x1="140" y1="170" x2="140" y2="340"/></g><circle cx="140" cy="170" r="4" fill="rgba(14,14,12,0.5)"/></svg><div class="work-card-overlay"><span>View Project</span></div></div><p class="work-card-title">Maison Celeste</p><p class="work-card-cat">Packaging</p></div>
+        <div class="work-card"><div class="work-card-img" style="background:#C8251E"><svg width="100%" height="100%" viewBox="0 0 280 340" xmlns="http://www.w3.org/2000/svg"><text x="140" y="200" text-anchor="middle" font-family="monospace" font-size="140" fill="rgba(242,239,232,0.1)">5</text></svg><div class="work-card-overlay"><span>View Project</span></div></div><p class="work-card-title">Sable & Co</p><p class="work-card-cat">Sensory Systems</p></div>
+        <div class="work-card"><div class="work-card-img" style="background:#D0CEC6"><svg width="100%" height="100%" viewBox="0 0 280 340" xmlns="http://www.w3.org/2000/svg"><g fill="none" stroke="rgba(14,14,12,0.2)" stroke-width="1"><path d="M40 80 Q140 140 240 80"/><path d="M40 160 Q140 220 240 160"/><path d="M40 240 Q140 300 240 240"/></g></svg><div class="work-card-overlay"><span>View Project</span></div></div><p class="work-card-title">Nordvik Health</p><p class="work-card-cat">Brand Identity</p></div>
+        <div class="work-card"><div class="work-card-img" style="background:#888880"><svg width="100%" height="100%" viewBox="0 0 280 340" xmlns="http://www.w3.org/2000/svg"><g fill="none" stroke="rgba(242,239,232,0.18)" stroke-width="1.5"><rect x="40" y="40" width="200" height="260"/><rect x="90" y="90" width="100" height="160"/></g></svg><div class="work-card-overlay"><span>View Project</span></div></div><p class="work-card-title">Peau Douce</p><p class="work-card-cat">Spatial Design</p></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- STATS STRIP -->
+<div class="stats">
+  <div class="stat-item"><div class="stat-num">5</div><div class="stat-label">Senses</div><div class="stat-desc">Every discipline maps to one.</div></div>
+  <div class="stat-item"><div class="stat-num">5</div><div class="stat-label">Services</div><div class="stat-desc">One for each sensory channel.</div></div>
+  <div class="stat-item"><div class="stat-num">5</div><div class="stat-label">People</div><div class="stat-desc">One specialist per discipline.</div></div>
+  <div class="stat-item"><div class="stat-num">5</div><div class="stat-label">Touchpoints</div><div class="stat-desc">Where your brand is felt.</div></div>
+  <div class="stat-item"><div class="stat-num" style="color:var(--red)">5</div><div class="stat-label">— The Number</div><div class="stat-desc">It's not a name. It's a system.</div></div>
+</div>
+
+<!-- SERVICES ACCORDION -->
+<section id="services" class="services">
+  <div class="services-header">
+    <p style="font-family:var(--mono);font-size:10px;letter-spacing:0.18em;text-transform:uppercase;color:var(--mid);margin-bottom:12px;display:flex;align-items:center;gap:12px"><span style="color:var(--red)">03</span> Our Services</p>
+    <h2 style="font-family:var(--serif);font-size:clamp(28px,3vw,44px);font-weight:400;letter-spacing:-0.02em;margin-bottom:48px;max-width:600px;line-height:1.15">We don't reach for the palette until we understand the sensation.</h2>
+  </div>
+
+  <div class="service-item">
+    <div class="service-trigger" onclick="toggleService(this)">
+      <div class="service-trigger-left">
+        <span class="service-num">01</span>
+        <span class="service-name">Visual Identity</span>
+      </div>
+      <span class="service-arrow">+</span>
+    </div>
+    <div class="service-body">
+      <div>
+        <p class="service-desc" style="margin-bottom:24px">Strategy and creative to build differentiated visual languages that own your unique space — and hold their shape under pressure.</p>
+        <ul class="service-list">
+          <li>Brand Strategy</li><li>Logo Design</li><li>Color & Typography</li>
+          <li>Motion Identity</li><li>Brand Guidelines</li>
+        </ul>
+      </div>
+      <div class="service-img">
+        <svg width="100%" height="100%" viewBox="0 0 480 240" xmlns="http://www.w3.org/2000/svg" style="background:#C4C0B8">
+          <g fill="none" stroke="rgba(14,14,12,0.15)" stroke-width="1">
+            <ellipse cx="240" cy="120" rx="18" ry="11"/><ellipse cx="240" cy="120" rx="40" ry="28"/><ellipse cx="240" cy="120" rx="66" ry="46"/><ellipse cx="240" cy="120" rx="96" ry="68"/><ellipse cx="240" cy="120" rx="130" ry="94"/><ellipse cx="240" cy="120" rx="168" ry="122"/>
+          </g>
+          <circle cx="240" cy="120" r="5" fill="rgba(14,14,12,0.4)"/>
+        </svg>
+      </div>
+    </div>
+  </div>
+
+  <div class="service-item">
+    <div class="service-trigger" onclick="toggleService(this)">
+      <div class="service-trigger-left">
+        <span class="service-num">02</span>
+        <span class="service-name">Brand Strategy & Voice</span>
+      </div>
+      <span class="service-arrow">+</span>
+    </div>
+    <div class="service-body">
+      <div>
+        <p class="service-desc" style="margin-bottom:24px">Positioning, naming, and messaging architecture that roots your brand in who you are — and where you're going.</p>
+        <ul class="service-list">
+          <li>Positioning</li><li>Naming</li><li>Messaging Architecture</li>
+          <li>Voice & Tone</li><li>Brand Story</li>
+        </ul>
+      </div>
+      <div class="service-img">
+        <svg width="100%" height="100%" viewBox="0 0 480 240" xmlns="http://www.w3.org/2000/svg" style="background:#A8A49C">
+          <g fill="none" stroke="rgba(14,14,12,0.2)" stroke-width="1.2">
+            <path d="M0,160 Q120,80 240,140 Q360,200 480,100"/><path d="M0,120 Q120,40 240,100 Q360,160 480,60"/><path d="M0,200 Q120,120 240,180 Q360,240 480,140"/>
+          </g>
+        </svg>
+      </div>
+    </div>
+  </div>
+
+  <div class="service-item">
+    <div class="service-trigger" onclick="toggleService(this)">
+      <div class="service-trigger-left">
+        <span class="service-num">03</span>
+        <span class="service-name">Packaging</span>
+      </div>
+      <span class="service-arrow">+</span>
+    </div>
+    <div class="service-body">
+      <div>
+        <p class="service-desc" style="margin-bottom:24px">The weight in the hand. The texture under the thumb. Packaging that earns the sale before it's even opened.</p>
+        <ul class="service-list">
+          <li>Structural Design</li><li>Surface Design</li><li>Material Strategy</li>
+          <li>Retail Readiness</li><li>Shipping Programs</li>
+        </ul>
+      </div>
+      <div class="service-img">
+        <svg width="100%" height="100%" viewBox="0 0 480 240" xmlns="http://www.w3.org/2000/svg" style="background:#D0CEC6">
+          <g fill="rgba(14,14,12,0.07)"><rect x="60" y="40" width="140" height="180" rx="3"/><rect x="280" y="60" width="140" height="160" rx="3"/></g>
+          <g fill="none" stroke="rgba(14,14,12,0.18)" stroke-width="1"><rect x="60" y="40" width="140" height="180" rx="3"/><rect x="280" y="60" width="140" height="160" rx="3"/></g>
+        </svg>
+      </div>
+    </div>
+  </div>
+
+  <div class="service-item">
+    <div class="service-trigger" onclick="toggleService(this)">
+      <div class="service-trigger-left">
+        <span class="service-num">04</span>
+        <span class="service-name">Spatial Design</span>
+      </div>
+      <span class="service-arrow">+</span>
+    </div>
+    <div class="service-body">
+      <div>
+        <p class="service-desc" style="margin-bottom:24px">The atmosphere before a word is spoken. Retail environments, pop-ups, and physical touchpoints that make your brand felt in space.</p>
+        <ul class="service-list">
+          <li>Retail Environments</li><li>Pop-Up Design</li><li>Wayfinding</li>
+          <li>Sensory Mapping</li><li>Visual Merchandising</li>
+        </ul>
+      </div>
+      <div class="service-img">
+        <svg width="100%" height="100%" viewBox="0 0 480 240" xmlns="http://www.w3.org/2000/svg" style="background:#888880">
+          <g fill="none" stroke="rgba(242,239,232,0.2)" stroke-width="1.2">
+            <path d="M60 200 L240 60 L420 200"/><path d="M100 200 L240 90 L380 200"/><path d="M140 200 L240 120 L340 200"/>
+            <line x1="60" y1="200" x2="420" y2="200"/>
+          </g>
+        </svg>
+      </div>
+    </div>
+  </div>
+
+  <div class="service-item">
+    <div class="service-trigger" onclick="toggleService(this)">
+      <div class="service-trigger-left">
+        <span class="service-num">05</span>
+        <span class="service-name">Full Sensory Systems</span>
+      </div>
+      <span class="service-arrow">+</span>
+    </div>
+    <div class="service-body">
+      <div>
+        <p class="service-desc" style="margin-bottom:24px">The complete architecture. Identity systems that scale with you, hold their shape under pressure, and stay coherent whether you're pitching a retailer or launching a campaign.</p>
+        <ul class="service-list">
+          <li>Full Identity Architecture</li><li>Cross-Channel Systems</li><li>Brand Governance</li>
+          <li>Launch Strategy</li><li>Wholesale Readiness</li>
+        </ul>
+      </div>
+      <div class="service-img" style="background:#0E0E0C">
+        <svg width="100%" height="100%" viewBox="0 0 480 240" xmlns="http://www.w3.org/2000/svg">
+          <g fill="none" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M320 40L160 40L130 130" stroke="#F2EFE8" stroke-width="8"/>
+            <path d="M130 130Q100 160 130 188Q158 215 220 215Q285 215 312 188Q336 163 312 132Q292 108 255 108L205 108" stroke="#F2EFE8" stroke-width="8"/>
+            <path d="M324 46L164 46L134 136" stroke="rgba(242,239,232,0.35)" stroke-width="5"/>
+            <path d="M134 136Q104 166 134 194Q162 221 224 221Q289 221 316 194Q340 169 316 138Q296 114 259 114L209 114" stroke="rgba(242,239,232,0.35)" stroke-width="5"/>
+          </g>
+        </svg>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- TEAM -->
+<section id="team" class="team">
+  <div class="team-header">
+    <div>
+      <p style="font-family:var(--mono);font-size:10px;letter-spacing:0.18em;text-transform:uppercase;color:var(--mid);margin-bottom:12px;display:flex;align-items:center;gap:12px"><span style="color:var(--red)">04</span> Our Studio</p>
+      <h2 style="font-family:var(--serif);font-size:clamp(28px,3vw,44px);font-weight:400;letter-spacing:-0.02em;line-height:1.1">Five people.<br>One specialist per sense.</h2>
+    </div>
+    <p class="team-intro">No generalists. We've built a team where every person owns one sensory channel — and brings that specialist depth to every project.</p>
+  </div>
+  <div class="team-grid">
+    <div class="team-card" onclick="openModal('elena')">
+      <div class="team-photo" style="background:#C4C0B8">
+        <svg width="100%" height="100%" viewBox="0 0 200 260" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid slice">
+          <rect width="200" height="260" fill="#C4C0B8"/>
+          <g fill="none" stroke="rgba(14,14,12,0.12)" stroke-width="1"><ellipse cx="100" cy="130" rx="12" ry="8"/><ellipse cx="100" cy="130" rx="28" ry="20"/><ellipse cx="100" cy="130" rx="48" ry="35"/><ellipse cx="100" cy="130" rx="70" ry="52"/><ellipse cx="100" cy="130" rx="95" ry="72"/><ellipse cx="100" cy="130" rx="124" ry="96"/></g>
+          <circle cx="100" cy="130" r="4" fill="rgba(14,14,12,0.4)"/>
+        </svg>
+      </div>
+      <div class="team-info">
+        <p class="team-name">Elena Voss</p>
+        <p class="team-role">Creative Director</p>
+        <p class="team-sense">Sight — Visual Identity</p>
+      </div>
+    </div>
+    <div class="team-card" onclick="openModal('marcus')">
+      <div class="team-photo" style="background:#B8B4AC">
+        <svg width="100%" height="100%" viewBox="0 0 200 260" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid slice">
+          <rect width="200" height="260" fill="#B8B4AC"/>
+          <g stroke="rgba(14,14,12,0.14)" stroke-width="0.8" fill="none">
+            <line x1="100" y1="130" x2="200" y2="0"/><line x1="100" y1="130" x2="160" y2="0"/><line x1="100" y1="130" x2="120" y2="0"/><line x1="100" y1="130" x2="80" y2="0"/><line x1="100" y1="130" x2="40" y2="0"/><line x1="100" y1="130" x2="0" y2="0"/><line x1="100" y1="130" x2="0" y2="65"/><line x1="100" y1="130" x2="0" y2="130"/><line x1="100" y1="130" x2="0" y2="195"/><line x1="100" y1="130" x2="0" y2="260"/><line x1="100" y1="130" x2="50" y2="260"/><line x1="100" y1="130" x2="100" y2="260"/><line x1="100" y1="130" x2="150" y2="260"/><line x1="100" y1="130" x2="200" y2="260"/><line x1="100" y1="130" x2="200" y2="195"/><line x1="100" y1="130" x2="200" y2="130"/><line x1="100" y1="130" x2="200" y2="65"/>
+          </g>
+          <circle cx="100" cy="130" r="4" fill="rgba(14,14,12,0.4)"/>
+        </svg>
+      </div>
+      <div class="team-info">
+        <p class="team-name">Marcus Bell</p>
+        <p class="team-role">Brand Strategist</p>
+        <p class="team-sense">Sound — Brand Voice</p>
+      </div>
+    </div>
+    <div class="team-card" onclick="openModal('suki')">
+      <div class="team-photo" style="background:#A0A098">
+        <svg width="100%" height="100%" viewBox="0 0 200 260" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid slice">
+          <rect width="200" height="260" fill="#A0A098"/>
+          <g fill="none" stroke="rgba(14,14,12,0.18)" stroke-width="1.2">
+            <path d="M0,200 Q50,150 100,170 Q150,190 200,130"/><path d="M0,165 Q50,115 100,135 Q150,155 200,95"/><path d="M0,235 Q50,185 100,205 Q150,225 200,165"/><path d="M0,130 Q50,80 100,100 Q150,120 200,60"/>
+          </g>
+        </svg>
+      </div>
+      <div class="team-info">
+        <p class="team-name">Suki Park</p>
+        <p class="team-role">Spatial Designer</p>
+        <p class="team-sense">Smell — Spatial Design</p>
+      </div>
+    </div>
+    <div class="team-card" onclick="openModal('theo')">
+      <div class="team-photo" style="background:#C8C4BC">
+        <svg width="100%" height="100%" viewBox="0 0 200 260" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid slice">
+          <rect width="200" height="260" fill="#C8C4BC"/>
+          <g fill="none" stroke="rgba(14,14,12,0.12)" stroke-width="1"><rect x="20" y="20" width="160" height="220"/><rect x="35" y="35" width="130" height="190"/><rect x="50" y="50" width="100" height="160"/><rect x="65" y="65" width="70" height="130"/><rect x="80" y="80" width="40" height="100"/></g>
+          <circle cx="100" cy="130" r="5" fill="rgba(14,14,12,0.4)"/>
+        </svg>
+      </div>
+      <div class="team-info">
+        <p class="team-name">Theo Reyes</p>
+        <p class="team-role">Packaging Lead</p>
+        <p class="team-sense">Touch — Packaging</p>
+      </div>
+    </div>
+    <div class="team-card" style="border-right:none" onclick="openModal('nadia')">
+      <div class="team-photo" style="background:#888880">
+        <svg width="100%" height="100%" viewBox="0 0 200 260" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid slice">
+          <rect width="200" height="260" fill="#888880"/>
+          <g fill="none" stroke="rgba(242,239,232,0.22)" stroke-width="6" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M145 60L70 60L55 125"/><path d="M55 125Q40 145 55 165Q72 190 105 190Q140 190 155 165Q168 142 152 120Q138 102 110 102L85 102"/>
+          </g>
+          <g fill="none" stroke="rgba(242,239,232,0.1)" stroke-width="4" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M148 63L73 63L58 128"/><path d="M58 128Q43 148 58 168Q75 193 108 193Q143 193 158 168Q171 145 155 123Q141 105 113 105L88 105"/>
+          </g>
+        </svg>
+      </div>
+      <div class="team-info">
+        <p class="team-name">Nadia Osei</p>
+        <p class="team-role">Systems Director</p>
+        <p class="team-sense">Taste — Sensory Systems</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- PRESS TICKER -->
+<div class="press-ticker">
+  <div class="press-track">
+    <span class="press-item">Fast Company</span><span class="press-item">It's Nice That</span><span class="press-item">Wallpaper*</span><span class="press-item">Dezeen</span><span class="press-item">The Dieline</span><span class="press-item">Packaging World</span><span class="press-item">Creative Review</span><span class="press-item">Hypebeast</span><span class="press-item">Ad Age</span><span class="press-item">Vogue Business</span>
+    <span class="press-item">Fast Company</span><span class="press-item">It's Nice That</span><span class="press-item">Wallpaper*</span><span class="press-item">Dezeen</span><span class="press-item">The Dieline</span><span class="press-item">Packaging World</span><span class="press-item">Creative Review</span><span class="press-item">Hypebeast</span><span class="press-item">Ad Age</span><span class="press-item">Vogue Business</span>
+  </div>
+</div>
+
+<!-- FAQ -->
+<section class="faq" id="faq">
+  <div class="faq-header">
+    <div class="faq-header-inner">
+      <h2 style="font-family:var(--serif);font-size:clamp(28px,3vw,44px);font-weight:400;letter-spacing:-0.02em"><em style="font-style:italic">Any</em> questions?</h2>
+      <p style="font-family:var(--mono);font-size:10px;letter-spacing:0.14em;text-transform:uppercase;color:var(--mid)">05 — FAQ</p>
+    </div>
+  </div>
+  <div class="faq-item">
+    <div class="faq-q" onclick="toggleFaq(this)">When should we start working with you?<span class="faq-icon">+</span></div>
+    <div class="faq-a">If you're launching a new brand, start talking to us 6–8 months before you plan to go to market. Typical end-to-end identity projects take a minimum of 12 weeks, and the full system can take 6 months from first conversation to launch. The earlier, the better — because the beginning is sacred.</div>
+  </div>
+  <div class="faq-item">
+    <div class="faq-q" onclick="toggleFaq(this)">What does "five senses" actually mean for branding?<span class="faq-icon">+</span></div>
+    <div class="faq-a">We believe your customer feels your brand before they understand it. The weight of your packaging, the cadence of your copy, the color that stops them mid-scroll — these aren't just aesthetic choices. They're conversion mechanisms. We map every service to one of the five senses as a reminder that branding is a full-body experience, not just a visual exercise.</div>
+  </div>
+  <div class="faq-item">
+    <div class="faq-q" onclick="toggleFaq(this)">Do you work with brands that are just starting out?<span class="faq-icon">+</span></div>
+    <div class="faq-a">That's our focus. We're built for founders in beauty, fitness, and fashion who are making decisions with incomplete information, limited runway, and everything on the line — and who still need to show up looking like they belong at the table. We work within your constraints and prioritize ruthlessly.</div>
+  </div>
+  <div class="faq-item">
+    <div class="faq-q" onclick="toggleFaq(this)">How big is your team?<span class="faq-icon">+</span></div>
+    <div class="faq-a">Five people. One specialist for each sense and corresponding service discipline. There's no B team here. When you work with FIVE, you work with the five of us. That's the model.</div>
+  </div>
+  <div class="faq-item">
+    <div class="faq-q" onclick="toggleFaq(this)">What industries do you focus on?<span class="faq-icon">+</span></div>
+    <div class="faq-a">Our primary verticals are beauty, fitness, and fashion — industries where sensation is not supplemental to the product, it is the product. We also work in adjacent spaces like wellness, food & beverage, and lifestyle. If your brand is about how something feels, we're probably the right fit.</div>
+  </div>
+  <div class="faq-item">
+    <div class="faq-q" onclick="toggleFaq(this)">Do you do project or retainer work?<span class="faq-icon">+</span></div>
+    <div class="faq-a">Most engagements start as projects. From there, some evolve into ongoing retainers — particularly for brands who want a creative partner through their growth phase. In your first two years, the identity will need to flex with you, and we're built for that.</div>
+  </div>
+</section>
+
+<!-- MANIFESTO -->
+<section class="manifesto">
+  <div class="manifesto-bg">FIVE</div>
+  <p class="manifesto-label">The Beginning Is Sacred</p>
+  <p class="manifesto-line">You are building something<br>the world is waiting for.<br>We make sure it <em>feels</em> it.</p>
+</section>
+
+<!-- FOOTER -->
+<footer id="contact">
+  <div class="footer-left">
+    <div>
+      <p style="font-family:var(--mono);font-size:10px;letter-spacing:0.18em;text-transform:uppercase;color:rgba(242,239,232,0.3);margin-bottom:32px;">Start a Project</p>
+      <h2 class="footer-headline">Built to be felt.<br>Built to <em>last.</em></h2>
+      <div style="margin-top:48px;display:flex;flex-direction:column;gap:16px">
+        <a href="mailto:hello@five.studio" class="btn-primary" style="display:inline-block;width:fit-content">hello@five.studio</a>
+        <p style="font-family:var(--mono);font-size:11px;letter-spacing:0.1em;color:rgba(242,239,232,0.3)">New York City</p>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <p class="footer-tagline">Branding for brands that are becoming.</p>
+      <p class="footer-copy">© 2024 Five.Studio</p>
+    </div>
+  </div>
+  <div class="footer-right">
+    <div class="footer-links">
+      <div class="footer-link-group">
+        <h4>Studio</h4>
+        <a href="#">About</a>
+        <a href="#">The Five</a>
+        <a href="#">Work</a>
+        <a href="#">Press</a>
+      </div>
+      <div class="footer-link-group">
+        <h4>Senses</h4>
+        <a href="#">Sight — Visual Identity</a>
+        <a href="#">Sound — Brand Voice</a>
+        <a href="#">Smell — Spatial</a>
+        <a href="#">Touch — Packaging</a>
+        <a href="#">Taste — Systems</a>
+      </div>
+      <div class="footer-link-group">
+        <h4>Contact</h4>
+        <a href="#">hello@five.studio</a>
+        <a href="#">Start a Project</a>
+      </div>
+      <div class="footer-link-group">
+        <h4>Social</h4>
+        <a href="#">Instagram</a>
+        <a href="#">LinkedIn</a>
+      </div>
+    </div>
+    <div style="border-top:1px solid rgba(242,239,232,0.08);padding-top:28px;margin-top:auto;display:flex;justify-content:space-between;align-items:flex-end">
+      <p style="font-family:var(--mono);font-size:10px;letter-spacing:0.1em;text-transform:uppercase;color:rgba(242,239,232,0.2)">Proudly built by five people for brands that are becoming.</p>
+      <svg width="48" height="48" viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg">
+        <g fill="none" stroke="rgba(242,239,232,0.15)" stroke-width="10" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M145 30L70 30L55 95"/><path d="M55 95Q40 115 55 135Q72 160 105 160Q140 160 155 135Q168 112 152 90Q138 72 110 72L85 72"/>
+        </g>
+      </svg>
+    </div>
+  </div>
+</footer>
+
+<!-- TEAM MODAL -->
+<div class="modal-overlay" id="modalOverlay" onclick="closeModal(event)">
+  <div class="modal">
+    <button class="modal-close" onclick="closeModalBtn()">×</button>
+    <p class="modal-name" id="modalName"></p>
+    <p class="modal-role" id="modalRole"></p>
+    <div class="modal-body" id="modalBody"></div>
+  </div>
+</div>
+
+<script>
+// Nav scroll
+const nav = document.getElementById('nav');
+window.addEventListener('scroll', () => nav.classList.toggle('scrolled', window.scrollY > 40));
+
+// ── WAVE LINE HERO ──
+const canvas = document.getElementById('contourCanvas');
+const ctx = canvas.getContext('2d');
+const hero = document.getElementById('hero');
+
+let W, H;
+function resize(){
+  W = canvas.width  = hero.offsetWidth;
+  H = canvas.height = hero.offsetHeight;
+}
+resize();
+window.addEventListener('resize', resize);
+
+// Mouse
+let mx = -999, my = -999;
+let prevMx = -999, prevMy = -999;
+let velX = 0, velY = 0;
+
+hero.addEventListener('mousemove', e => {
+  const r = hero.getBoundingClientRect();
+  prevMx = mx; prevMy = my;
+  mx = e.clientX - r.left;
+  my = e.clientY - r.top;
+  velX = mx - prevMx;
+  velY = my - prevMy;
+});
+hero.addEventListener('mouseleave', () => {
+  mx = -999; my = -999; velX = 0; velY = 0;
+});
+
+// Lines config
+const LINE_COUNT = 36;        // number of horizontal lines
+const SEGMENTS   = 160;       // points per line
+const INFLUENCE  = 180;       // px radius of mouse influence
+const STRENGTH   = 48;        // max displacement in px
+const DAMPING    = 0.88;      // how fast ripples die
+const SPRING     = 0.055;     // pull back to rest
+const SPEED_MULT = 0.7;       // how much cursor velocity adds to the effect
+
+// Each point stores its y-displacement and velocity
+// pts[lineIdx][segIdx] = { dy, vy }
+let pts = [];
+
+function initPts(){
+  pts = [];
+  for(let l = 0; l < LINE_COUNT; l++){
+    pts[l] = [];
+    for(let s = 0; s <= SEGMENTS; s++){
+      pts[l][s] = { dy: 0, vy: 0 };
+    }
+  }
+}
+initPts();
+window.addEventListener('resize', initPts);
+
+let frame = 0;
+
+function draw(){
+  requestAnimationFrame(draw);
+  frame++;
+  ctx.clearRect(0, 0, W, H);
+
+  const lineSpacing = H / (LINE_COUNT + 1);
+
+  for(let l = 0; l < LINE_COUNT; l++){
+    const baseY = lineSpacing * (l + 1);
+    const segW  = W / SEGMENTS;
+
+    // Update physics for each point
+    for(let s = 0; s <= SEGMENTS; s++){
+      const px = s * segW;
+      const py = baseY + pts[l][s].dy;
+
+      // Distance from mouse
+      const dx = px - mx;
+      const dy = py - my;
+      const dist = Math.sqrt(dx*dx + dy*dy);
+
+      if(dist < INFLUENCE && mx > 0){
+        // Falloff: smooth out toward edge of influence
+        const falloff = 1 - (dist / INFLUENCE);
+        const smooth  = falloff * falloff * (3 - 2 * falloff); // smoothstep
+
+        // Push direction: mostly Y (up/down), slight X-tilt from velocity
+        const pushY = smooth * STRENGTH * (dy < 0 ? -1 : 1) * 0.6;
+        const velPush = smooth * velY * SPEED_MULT;
+
+        pts[l][s].vy += (pushY + velPush) * 0.12;
+      }
+
+      // Spring back to rest + damping
+      pts[l][s].vy += -pts[l][s].dy * SPRING;
+      pts[l][s].vy *= DAMPING;
+      pts[l][s].dy += pts[l][s].vy;
+
+      // Gentle neighbour coupling (makes ripples spread sideways)
+      if(s > 0){
+        const diff = pts[l][s-1].dy - pts[l][s].dy;
+        pts[l][s].vy   += diff * 0.012;
+        pts[l][s-1].vy -= diff * 0.012;
+      }
+    }
+
+    // Line opacity — lines toward centre of screen are slightly brighter
+    const normY = (baseY / H - 0.5) * 2; // -1 to 1
+    const opacity = 0.07 + (1 - Math.abs(normY)) * 0.07;
+
+    ctx.beginPath();
+    ctx.strokeStyle = `rgba(242,239,232,${opacity.toFixed(3)})`;
+    ctx.lineWidth = 0.7;
+
+    // Draw smooth curve through displaced points
+    for(let s = 0; s <= SEGMENTS; s++){
+      const x = s * segW;
+      const y = baseY + pts[l][s].dy;
+      if(s === 0) ctx.moveTo(x, y);
+      else {
+        const px = (s - 1) * segW;
+        const py = baseY + pts[l][s-1].dy;
+        const cpx = (px + x) / 2;
+        ctx.quadraticCurveTo(px, py, cpx, (py + y) / 2);
+      }
+    }
+    ctx.stroke();
+  }
+
+  // Very faint ghost "5" behind lines
+  const a5 = 0.03 + 0.008 * Math.sin(frame * 0.006);
+  ctx.save();
+  ctx.globalAlpha = a5;
+  ctx.font = `500 ${Math.min(W, H) * 0.82}px 'DM Mono', monospace`;
+  ctx.fillStyle = '#F2EFE8';
+  ctx.textAlign = 'center';
+  ctx.textBaseline = 'middle';
+  ctx.fillText('', W / 2, H / 2);
+  ctx.restore();
+}
+
+draw();
+
+// Expertise tabs
+document.querySelectorAll('.expertise-tab').forEach(tab => {
+  tab.addEventListener('click', () => {
+    document.querySelectorAll('.expertise-tab').forEach(t => t.classList.remove('active'));
+    document.querySelectorAll('.expertise-panel').forEach(p => p.classList.remove('active'));
+    tab.classList.add('active');
+    document.getElementById('panel-' + tab.dataset.panel).classList.add('active');
+  });
+});
+
+// Services accordion
+function toggleService(trigger) {
+  const item = trigger.parentElement;
+  const isOpen = item.classList.contains('open');
+  document.querySelectorAll('.service-item').forEach(i => i.classList.remove('open'));
+  if (!isOpen) item.classList.add('open');
+}
+
+// FAQ accordion
+function toggleFaq(trigger) {
+  const item = trigger.parentElement;
+  item.classList.toggle('open');
+}
+
+// Team modal data
+const teamData = {
+  elena: {
+    name: 'Elena Voss',
+    role: 'Creative Director — Sight',
+    body: `Elena leads visual identity at FIVE. With a background spanning luxury fashion houses and independent beauty brands, she built her career on the conviction that great design is felt before it's understood.<br><br>At FIVE, Elena owns the sight discipline — logo, color, typography, and motion. She doesn't reach for the palette until she understands the sensation the brand needs to evoke. Her work has been recognized by The Dieline, Creative Review, and Wallpaper*.<br><br>She believes the best logos earn trust before anyone reads the name.`
+  },
+  marcus: {
+    name: 'Marcus Bell',
+    role: 'Brand Strategist — Sound',
+    body: `Marcus owns sound at FIVE — not music, but the way a brand speaks. Cadence. Tone. The rhythm of copy that stops you mid-scroll and makes you feel something before you know why.<br><br>His background is in brand strategy and editorial, with stints at both a global agency and an indie literary magazine. He brought that tension to FIVE: the precision of strategy, the texture of voice.<br><br>He believes naming and messaging are the most underinvested assets in a brand's first year.`
+  },
+  suki: {
+    name: 'Suki Park',
+    role: 'Spatial Designer — Smell',
+    body: `Suki thinks in space. She maps the atmosphere of a room before a word is spoken, a product is touched, or a price is seen. She owns smell at FIVE — the discipline of how a brand occupies physical space.<br><br>Her work spans retail environments, pop-up design, and sensory mapping. Before FIVE, she led spatial design for a boutique hospitality group in Seoul and a clean beauty retailer in London.<br><br>She believes the best retail environments make people feel something they can't name.`
+  },
+  theo: {
+    name: 'Theo Reyes',
+    role: 'Packaging Lead — Touch',
+    body: `Theo obsesses over what a brand feels like in the hand. Weight. Texture. The resistance of a cap. The sound of a box opening. He owns touch at FIVE, and he approaches every packaging project as a sensory engineering problem.<br><br>His background spans industrial design and structural packaging, with deep experience in sustainable materials and retail-ready specifications.<br><br>He believes packaging that converts before it's opened is the most efficient marketing spend a brand can make.`
+  },
+  nadia: {
+    name: 'Nadia Osei',
+    role: 'Systems Director — Taste',
+    body: `Nadia holds the whole thing together. She owns taste at FIVE — the discipline of how all five senses work as one coherent system. She builds the architecture that lets a brand flex without breaking.<br><br>Before FIVE, she led brand governance for a global CPG company and built identity systems for emerging brands through three funding rounds each.<br><br>She believes the most valuable thing you can give a young brand isn't a beautiful logo — it's a system that can hold its shape under pressure.`
+  }
+};
+
+function openModal(id) {
+  const d = teamData[id];
+  document.getElementById('modalName').textContent = d.name;
+  document.getElementById('modalRole').textContent = d.role;
+  document.getElementById('modalBody').innerHTML = d.body;
+  document.getElementById('modalOverlay').classList.add('open');
+  document.body.style.overflow = 'hidden';
+}
+function closeModal(e) {
+  if (e.target === document.getElementById('modalOverlay')) closeModalBtn();
+}
+function closeModalBtn() {
+  document.getElementById('modalOverlay').classList.remove('open');
+  document.body.style.overflow = '';
+}
+document.addEventListener('keydown', e => { if (e.key === 'Escape') closeModalBtn(); });
+</script>
+</body>
+</html>
