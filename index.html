@@ -111,12 +111,17 @@ nav.scrolled .nav-links a.active:hover{
   min-height:100vh;
   display:flex;
   flex-direction:column;
-  justify-content:space-between; /* THIS pushes text apart */
+  justify-content:space-between;
   align-items:center;
-  background:var(--black);
+  background:
+    radial-gradient(circle at 15% 20%, rgba(121,23,22,0.06), transparent 35%),
+    radial-gradient(circle at 85% 75%, rgba(0,0,0,0.03), transparent 28%),
+    #F2EFE8;
   padding:120px 48px 60px;
   position:relative;
+  overflow:hidden;
 }
+
 .hero-content{
   display:flex;
   flex-direction:column;
@@ -124,13 +129,22 @@ nav.scrolled .nav-links a.active:hover{
   height:100%;
   width:100%;
   max-width:1200px;
+  position:relative;
+  z-index:3;
+  transition:transform 0.18s ease-out;
+  will-change:transform;
+}
+
+#contourCanvas{
+  transition:transform 0.25s ease-out;
+  will-change:transform;
 }
 .hero-top{
   font-family:var(--serif);
   font-size:clamp(44px,6.5vw,88px);
   line-height:1.05;
   letter-spacing:-0.025em;
-  color:var(--off-white);
+  color:var(--black);
   text-align:center;
   margin-top:140px; /* pushes it down from top */
 }
@@ -139,7 +153,7 @@ nav.scrolled .nav-links a.active:hover{
   font-size:clamp(32px,4.5vw,64px);
   line-height:1.1;
   letter-spacing:-0.02em;
-  color:var(--off-white);
+  color:var(--black);
   text-align:center;
   margin-bottom:-10px; /* controls how low it sits */
 }
@@ -188,22 +202,92 @@ nav.scrolled .nav-links a.active:hover{
 .svg-placeholder{width:100%;height:100%;display:flex;align-items:center;justify-content:center;background:var(--stone)}
 
 /* ── ABOUT STRIP ── */
-.about-strip{display:grid;grid-template-columns:1fr 1fr;border-bottom:1px solid rgba(14,14,12,0.15)}
-.about-strip-left{padding:80px 48px;
-  border-right:1px solid rgba(242,239,232,0.08);
-  background:var(--black);
-  color:var(--off-white);}
-.about-strip-right{padding:80px 48px;display:flex;flex-direction:column;justify-content:space-between}
-.about-headline{font-family:var(--serif);font-size:clamp(32px,3.5vw,52px);line-height:1.1;font-weight:400;letter-spacing:-0.02em}
-.about-body{font-size:15px;line-height:1.8;color:rgba(14,14,12,0.68);max-width:460px}
-.about-body p+p{margin-top:18px}
-.about-em{ font-family:var(--serif);
+
+.about-strip{
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  border-bottom:1px solid rgba(14,14,12,0.15);
+}
+
+/* LEFT SIDE */
+
+.about-strip-left{
+  padding:80px 48px;
+  position:relative;
+  overflow:hidden;
+  background:var(--off-white);
+  color:var(--black);
+  display:flex;
+  flex-direction:column;
+  justify-content:center;
+}
+
+/* BACKGROUND IMAGE */
+
+.about-bg-img{
+  position:absolute;
+  inset:0;
+  width:100%;
+  height:100%;
+  object-fit:cover;
+  opacity:.6;
+  filter:grayscale(100%) brightness(.95) contrast(.95);
+  mix-blend-mode:multiply;
+}
+
+/* CONTENT ABOVE IMAGE */
+
+.about-left-content{
+  position:relative;
+  z-index:2;
+}
+
+/* HEADLINE */
+
+.about-headline{
+  font-family:var(--serif);
+  font-size:clamp(32px,3.5vw,52px);
+  line-height:1.1;
+  font-weight:400;
+  letter-spacing:-0.02em;
+  color:var(--black);
+}
+
+/* SMALL ITALIC COPY */
+
+.about-em{
+  font-family:var(--serif);
   font-style:italic;
   font-size:20px;
   line-height:1.4;
   letter-spacing:-0.01em;
   margin-top:20px;
-  color:rgba(242,239,232,0.78)}
+  color:rgba(14,14,12,0.72);
+  max-width:520px;
+}
+
+/* RIGHT SIDE */
+
+.about-strip-right{
+  padding:80px 48px;
+  background:#F7F3EC;
+  display:flex;
+  flex-direction:column;
+  justify-content:center;
+}
+
+/* BODY COPY */
+
+.about-body{
+  font-size:15px;
+  line-height:1.8;
+  color:rgba(14,14,12,0.68);
+  max-width:460px;
+}
+
+.about-body p + p{
+  margin-top:18px;
+}
 
 /* ── WORK MARQUEE ── */
 .work-section{border-bottom:1px solid rgba(14,14,12,0.15);padding:64px 48px}
@@ -466,7 +550,7 @@ footer{background:var(--black);color:var(--off-white);display:grid;grid-template
 <section id="work" style="border-bottom:1px solid rgba(14,14,12,0.15)">
   <div class="work-section">
     <div class="work-section-header">
-      <h2 class="section-title">Our Work</h2>
+      <h2 class="section-title">OUR WORK</h2>
       <a href="work.html" style="font-family:var(--mono);font-size:11px;letter-spacing:0.12em;text-transform:uppercase;color:var(--mid);text-decoration:none;border-bottom:1px solid currentColor;padding-bottom:2px">View All</a>
     </div>
     <div class="work-marquee-wrap">
@@ -549,6 +633,7 @@ footer{background:var(--black);color:var(--off-white);display:grid;grid-template
 <!-- ABOUT -->
 <div class="about-strip" id="about">
   <div class="about-strip-left">
+    <img src="built.png" class="about-bg-img" alt="">
     <h2 class="about-headline">Built for brands<br>that are <em style="font-style:italic;color:var(--red)">evolving.</em></h2>
     <p class="about-em">Most agencies are built for brands that already exist.
 We are built for the ones launching, growing, or ready for what’s next.</p>
@@ -563,7 +648,7 @@ We are built for the ones launching, growing, or ready for what’s next.</p>
 
 <!-- VERTICALS STRIP -->
  <div class="services-header">
-    <h2 class="section-title">Our Clientele</h2>
+    <h2 class="section-title">OUR CLIENTELE</h2>
   </div>
 <div class="verticals">
   <div class="vertical-item">
@@ -625,7 +710,7 @@ We are built for the ones launching, growing, or ready for what’s next.</p>
 <!-- SERVICES ACCORDION -->
 <section id="services" class="services">
   <div class="services-header">
-    <h2 class="section-title">Our Services</h2>
+    <h2 class="section-title">OUR SERVICES</h2>
   </div>
 
   <!-- 01 BRAND STRATEGY -->
@@ -819,7 +904,7 @@ We are built for the ones launching, growing, or ready for what’s next.</p>
 <section class="faq" id="faq">
   <div class="faq-header">
     <div class="faq-header-inner">
-      <h2 style="font-family:var(--serif);font-size:clamp(28px,3vw,44px);font-weight:400;letter-spacing:-0.02em"><em style="font-style:italic">Any</em> questions?</h2>
+      <h2 style="font-family:var(--serif);font-size:clamp(28px,3vw,44px);font-weight:400;letter-spacing:-0.02em"><em style="font-style:italic">ANY</em> QUESTIONS?</h2>
     </div>
   </div>
   <div class="faq-item">
@@ -883,6 +968,7 @@ We are built for the ones launching, growing, or ready for what’s next.</p>
 </div>
 
 <script>
+
 // Nav scroll
 const nav = document.getElementById('nav');
 window.addEventListener('scroll', () => nav.classList.toggle('scrolled', window.scrollY > 40));
@@ -995,7 +1081,7 @@ function draw(){
     const opacity = 0.12 + (1 - Math.abs(normY)) * 0.18;
 
     ctx.beginPath();
-    ctx.strokeStyle = `rgba(242,239,232,${opacity.toFixed(3)})`;
+    ctx.strokeStyle = `rgba(14,14,12,${opacity.toFixed(3)})`;
     ctx.lineWidth = 0.7;
 
     // Draw smooth curve through displaced points
@@ -1026,7 +1112,48 @@ function draw(){
 }
 
 draw();
+const heroContent = document.querySelector('.hero-content');
 
+let parallaxX = 0;
+let parallaxY = 0;
+let targetParallaxX = 0;
+let targetParallaxY = 0;
+let idleTime = 0;
+
+function animateHeroMotion(){
+  idleTime += 0.01;
+
+  const idleX = Math.sin(idleTime) * 8;
+  const idleY = Math.cos(idleTime * 0.8) * 6;
+
+  parallaxX += (targetParallaxX - parallaxX) * 0.08;
+  parallaxY += (targetParallaxY - parallaxY) * 0.08;
+
+  const totalX = idleX + parallaxX;
+  const totalY = idleY + parallaxY;
+
+ 
+  canvas.style.transform = `translate(${totalX * 0.5}px, ${totalY * 0.5}px) scale(1.02)`;
+
+  requestAnimationFrame(animateHeroMotion);
+}
+
+animateHeroMotion();
+
+hero.addEventListener('mousemove', (e) => {
+  const rect = hero.getBoundingClientRect();
+
+  const x = e.clientX - rect.left;
+  const y = e.clientY - rect.top;
+
+  targetParallaxX = ((x / rect.width) - 0.5) * 20;
+  targetParallaxY = ((y / rect.height) - 0.5) * 20;
+});
+
+hero.addEventListener('mouseleave', () => {
+  targetParallaxX = 0;
+  targetParallaxY = 0;
+});
 // Expertise tabs
 document.querySelectorAll('.expertise-tab').forEach(tab => {
   tab.addEventListener('click', () => {

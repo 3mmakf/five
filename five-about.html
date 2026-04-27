@@ -55,7 +55,7 @@ nav.scrolled{
 
 .nav-links a{
   font-family:var(--mono);
-  font-size:13px;
+  font-size:15px;
   letter-spacing:0.12em;
   text-transform:uppercase;
   color:var(--black);
@@ -101,7 +101,7 @@ nav.scrolled .nav-links a.active:hover{
   color:var(--off-white);
 }
 .logo-img{
-  height:50px;
+  height:60px;
   width:auto;
   display:block;
 }
@@ -145,22 +145,92 @@ nav.scrolled .nav-links a.active:hover{
 .svg-placeholder{width:100%;height:100%;display:flex;align-items:center;justify-content:center;background:var(--stone)}
 
 /* ── ABOUT STRIP ── */
-.about-strip{display:grid;grid-template-columns:1fr 1fr;border-bottom:1px solid rgba(14,14,12,0.15)}
-.about-strip-left{padding:80px 48px;
-  border-right:1px solid rgba(242,239,232,0.08);
-  background:var(--black);
-  color:var(--off-white);}
-.about-strip-right{padding:80px 48px;display:flex;flex-direction:column;justify-content:space-between}
-.about-headline{font-family:var(--serif);font-size:clamp(32px,3.5vw,52px);line-height:1.1;font-weight:400;letter-spacing:-0.02em}
-.about-body{font-size:15px;line-height:1.8;color:rgba(14,14,12,0.68);max-width:460px}
-.about-body p+p{margin-top:18px}
-.about-em{ font-family:var(--serif);
+
+.about-strip{
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  border-bottom:1px solid rgba(14,14,12,0.15);
+}
+
+/* LEFT SIDE */
+
+.about-strip-left{
+  padding:80px 48px;
+  position:relative;
+  overflow:hidden;
+  background:var(--off-white);
+  color:var(--black);
+  display:flex;
+  flex-direction:column;
+  justify-content:center;
+}
+
+/* BACKGROUND IMAGE */
+
+.about-bg-img{
+  position:absolute;
+  inset:0;
+  width:100%;
+  height:100%;
+  object-fit:cover;
+  opacity:.6;
+  filter:grayscale(100%) brightness(.95) contrast(.95);
+  mix-blend-mode:multiply;
+}
+
+/* CONTENT ABOVE IMAGE */
+
+.about-left-content{
+  position:relative;
+  z-index:2;
+}
+
+/* HEADLINE */
+
+.about-headline{
+  font-family:var(--serif);
+  font-size:clamp(32px,3.5vw,52px);
+  line-height:1.1;
+  font-weight:400;
+  letter-spacing:-0.02em;
+  color:var(--black);
+}
+
+/* SMALL ITALIC COPY */
+
+.about-em{
+  font-family:var(--serif);
   font-style:italic;
   font-size:20px;
   line-height:1.4;
   letter-spacing:-0.01em;
   margin-top:20px;
-  color:rgba(242,239,232,0.78)}
+  color:rgba(14,14,12,0.72);
+  max-width:520px;
+}
+
+/* RIGHT SIDE */
+
+.about-strip-right{
+  padding:80px 48px;
+  background:#F7F3EC;
+  display:flex;
+  flex-direction:column;
+  justify-content:center;
+}
+
+/* BODY COPY */
+
+.about-body{
+  font-size:15px;
+  line-height:1.8;
+  color:rgba(14,14,12,0.68);
+  max-width:460px;
+}
+
+.about-body p + p{
+  margin-top:18px;
+}
 
 /* ── WORK MARQUEE ── */
 .work-section{border-bottom:1px solid rgba(14,14,12,0.15);padding:64px 48px}
@@ -178,6 +248,65 @@ nav.scrolled .nav-links a.active:hover{
 .work-card-title{font-family:var(--serif);font-size:18px;font-weight:400;letter-spacing:-0.01em}
 .work-card-cat{font-family:var(--mono);font-size:10px;letter-spacing:0.14em;text-transform:uppercase;color:var(--mid);margin-top:4px}
 @keyframes marqueeScroll{0%{transform:translateX(0)}100%{transform:translateX(-50%)}}
+.verticals{
+  display:grid;
+  grid-template-columns:repeat(5,1fr);
+  border-top:1px solid rgba(14,14,12,0.12);
+  border-bottom:1px solid rgba(14,14,12,0.12);
+}
+
+.vertical-item{
+  padding:0;
+  border-right:1px solid rgba(14,14,12,0.12);
+  transition:background 0.3s ease;
+}
+
+.vertical-item:last-child{
+  border-right:none;
+}
+
+.vertical-item:hover{
+  background:#f7f4ee;
+}
+
+.vertical-image{
+  width:100%;
+  height:260px;
+  overflow:hidden;
+}
+
+.vertical-image img{
+  width:100%;
+  height:100%;
+  object-fit:cover;
+  display:block;
+  transition:transform 0.5s ease;
+}
+
+.vertical-item:hover .vertical-image img{
+  transform:scale(1.05);
+}
+
+.vertical-num{
+  font-family:var(--mono);
+  font-size:10px;
+  letter-spacing:.16em;
+  color:var(--red);
+  padding:24px 24px 0;
+}
+
+.vertical-name{
+  font-family:var(--serif);
+  font-size:28px;
+  padding:8px 24px 0;
+}
+
+.vertical-body{
+  font-size:14px;
+  line-height:1.7;
+  color:rgba(14,14,12,.65);
+  padding:12px 24px 28px;
+}
 
 /* ── SERVICES ACCORDION ── */
 .services{border-bottom:1px solid rgba(14,14,12,0.15)}
@@ -333,6 +462,7 @@ footer{background:var(--black);color:var(--off-white);display:grid;grid-template
 <!-- ABOUT -->
 <div class="about-strip" id="about">
   <div class="about-strip-left">
+    <img src="built.png" class="about-bg-img" alt="">
     <h2 class="about-headline">Built for brands<br>that are <em style="font-style:italic;color:var(--red)">evolving.</em></h2>
     <p class="about-em">Most agencies are built for brands that already exist.
 We are built for the ones launching, growing, or ready for what’s next.</p>
@@ -344,6 +474,7 @@ We are built for the ones launching, growing, or ready for what’s next.</p>
     </div>
   </div>
 </div>
+
    
 
 
@@ -351,7 +482,7 @@ We are built for the ones launching, growing, or ready for what’s next.</p>
 <section id="team" class="team">
   <div class="team-header">
     <div>
-      <h2 style="font-family:var(--serif);font-size:clamp(28px,3vw,44px);font-weight:400;letter-spacing:-0.02em;line-height:1.1">Five people.<br>One specialist per sense.</h2>
+      <h2 style="font-family:var(--serif);font-size:clamp(28px,3vw,44px);font-weight:400;letter-spacing:-0.02em;line-height:1.1">Five people.<br>Create the full-body experience.</h2>
     </div>
     <p class="team-intro">No generalists. We've built a team where every person owns one sensory channel — and brings that specialist depth to every project.</p>
   </div>
@@ -403,13 +534,58 @@ We are built for the ones launching, growing, or ready for what’s next.</p>
     </div>
   </div>
 </section>
+<!-- VERTICALS STRIP -->
+ <div class="services-header">
+    <h2 class="section-title">OUR APPROACH</h2>
+  </div>
+<div class="verticals">
+  <div class="vertical-item">
+    <div class="vertical-image">
+      <img src="story.png" alt="Beauty brand">
+    </div>
+    <p class="vertical-num">01</p>
+    <p class="vertical-name">STORYTELLING</p>
+  </div>
 
+  <div class="vertical-item">
+    <div class="vertical-image">
+      <img src="visual.png" alt="Fitness brand">
+    </div>
+    <p class="vertical-num">02</p>
+    <p class="vertical-name">VISUALS</p>
+  </div>
+
+  <div class="vertical-item">
+    <div class="vertical-image">
+      <img src="com.png" alt="Fashion brand">
+    </div>
+    <p class="vertical-num">03</p>
+    <p class="vertical-name">COMMUNITY</p>
+  </div>
+
+  <div class="vertical-item">
+    <div class="vertical-image">
+      <img src="person.png" alt="Home and gifts">
+    </div>
+    <p class="vertical-num">04</p>
+    <p class="vertical-name">PRESENSE</p>
+  </div>
+
+  <div class="vertical-item">
+    <div class="vertical-image">
+      <img src="human.png" alt="Retail brand">
+    </div>
+    <p class="vertical-num">05</p>
+    <p class="vertical-name">HUMAN SENSES</p>
+  </div>
+
+</div>
 
 <!-- FAQ -->
 <section class="faq" id="faq">
   <div class="faq-header">
     <div class="faq-header-inner">
-      <h2 style="font-family:var(--serif);font-size:clamp(28px,3vw,44px);font-weight:400;letter-spacing:-0.02em"><em style="font-style:italic">Any</em> questions?</h2>
+      <h2 style="font-family:var(--serif);font-size:clamp(28px,3vw,44px);font-weight:400;letter-spacing:-0.02em"><em style="font-style:italic">ANY</em> QUESTIONS?</h2>
     </div>
   </div>
   <div class="faq-item">
